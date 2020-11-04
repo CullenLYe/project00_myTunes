@@ -28,7 +28,7 @@ int main() {
   struct song_node *song4 = new_Song("Chlorine", "Twenty One Pilots");
   struct song_node *song5 = new_Song("Shallow", "Lady Gaga, Bradley Cooper");
   struct song_node *song6 = new_Song("Yellow", "Coldplay");
-  struct song_node *song7 = new_Song("Viva La Vida", "Lady Gaga, Bradley Cooper");
+  struct song_node *song7 = new_Song("Viva La Vida", "Coldplay");
 
   printf("\nprinting song list\n");
   struct song_node *songlist = insert_song_sorted(song2, song3);
@@ -42,8 +42,25 @@ int main() {
   songlist = insert_song_sorted(songlist, song5);
   printlist_Song(songlist);
   
+  printf("\nprinting song list\n");
+  songlist = insert_song_sorted(songlist, song6);
+  printlist_Song(songlist);
+
+  printf("\nprinting song list\n");
+  songlist = insert_song_sorted(songlist, song7);
+  printlist_Song(songlist);
+
   printf("\ntesting find_song...\n");
+  printf("finding Artist: Coldplay\t Song: Yellow\n");
+  printf("printing list...\n");
+  struct song_node *find = find_song(songlist, song6->artist, song6->name);
+  printlist_Song(find);
+
   printf("\ntesting find_first_song...\n");
-  
+  printf("finding Artist: Coldplay\n");
+  printf("printing list...\n");
+  find = find_first_artist(songlist, song6->artist);
+  printlist_Song(find);
+
   return 0;
 }

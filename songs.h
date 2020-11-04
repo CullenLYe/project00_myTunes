@@ -13,6 +13,7 @@ struct song_node *new_Song(char *name, char *artist);
 void printlist_Song(struct song_node *song);
 struct song_node *insert_front(struct song_node *front, struct song_node *newsong);
 struct song_node *find_song(struct song_node* s, char* name, char* song);
+struct song_node *find_first_artist(struct song_node *song, char *n);
 struct song_node *insert_song_sorted(struct song_node *song, struct song_node* s2);
 
 #endif
