@@ -17,7 +17,7 @@ struct song_node *new_Song(char *name, char *artist) {
 // print the entire list
 void printlist_Song(struct song_node *song) {
   while (song) {
-    printf("Song: %s\tArtist: %s\n", song->name, song->artist);
+    printf("Artist: %s\tSong: %s\n", song->artist, song->name);
     song = song->next;
   }
 }
@@ -68,17 +68,19 @@ struct song_node *insert_song_sorted(struct song_node *song, struct song_node *s
         s2->next = song;
       }
     }
-**/
-// else
+    **/
+    //else
     if (strcmp(tracker->artist, s2->artist) > 0) {
-      // beginning case
+      // starting case
       if (before == tracker) {
         s2->next = tracker;
         return s2;
       }
+      // intermediate
       else {
         before->next = s2;
         s2->next = tracker;
+        break;
       } 
     } 
     // ending case
