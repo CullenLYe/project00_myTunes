@@ -1,3 +1,5 @@
+// VAC: Vincent Jiang, Alice Liu, Cullen Ye
+
 #ifndef SONGS_H
 #define SONGS_H
 
@@ -8,7 +10,9 @@ struct song_node {
 };
 
 struct song_node *new_Song(char *name, char *artist);
-void print_Song(struct song_node *song);
+void printlist_Song(struct song_node *song);
 struct song_node *insert_front(struct song_node *front, struct song_node *newsong);
+struct song_node *find_song(struct song_node* s, char* name, char* song);
+struct song_node *insert_song_sorted(struct song_node *song, struct song_node* s2);
 
 #endif
