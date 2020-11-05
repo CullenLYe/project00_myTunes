@@ -123,16 +123,10 @@ int num_elements(struct song_node *list) {
   return i;
 }
 
-// returns a random number from 0 to n-1
-int random_int(int n) {
-  int i = rand() % n;
-  return i;
-}
-
 // return a pointer to random element in the list
 struct song_node *random_element(struct song_node *list) {
   int i;
-  int k = random_int(num_elements(list));
+  int k = rand() % num_elements(list);
   for (i = 0; i < k; i++) {
     list = list->next;
   }

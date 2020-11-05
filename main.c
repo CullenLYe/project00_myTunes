@@ -2,10 +2,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "songs.h"
 //#include "symbols.h"
 
 int main() {
+  srand(time(NULL));
   printf("Creating song1...\n");
   struct song_node *song1 = new_Song("Happy", "Pharrell Williams");
   printf("testing print_Song\n");
