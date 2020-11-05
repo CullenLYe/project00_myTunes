@@ -15,5 +15,6 @@ struct song_node *insert_front(struct song_node *front, struct song_node *newson
 struct song_node *find_song(struct song_node* s, char* name, char* song);
 struct song_node *find_first_artist(struct song_node *song, char *n);
 struct song_node *insert_song_sorted(struct song_node *song, struct song_node* s2);
+struct song_node *free_list(struct song_node *node);
 
 #endif
