@@ -62,5 +62,9 @@ int main() {
   find = find_first_artist(songlist, song6->artist);
   printlist_Song(find);
 
+  printf("\nFreeing Song List...\n");
+  free_list(song1);
+  printf("\nFinished Freeing...\n");
+  
   return 0;
 }
