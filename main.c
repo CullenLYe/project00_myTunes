@@ -30,6 +30,7 @@ int main() {
   struct song_node *song6 = new_Song("Yellow", "Coldplay");
   struct song_node *song7 = new_Song("Viva La Vida", "Coldplay");
 
+
   printf("\nprinting song list\n");
   struct song_node *songlist = insert_song_sorted(song2, song3);
   printlist_Song(songlist);
@@ -56,15 +57,46 @@ int main() {
   struct song_node *find = find_song(songlist, song6->artist, song6->name);
   printlist_Song(find);
 
+
   printf("\ntesting find_first_song...\n");
   printf("finding Artist: Coldplay\n");
   printf("printing list...\n");
   find = find_first_artist(songlist, song6->artist);
   printlist_Song(find);
 
+
+  printf("\ntesting random_element...\n");
+  int i;
+  struct song_node *s;
+  for (i = 0; i < 4; i++) {
+    s = random_element(songlist); 
+    print_node(s);
+  }
+
+
+  printf("\ntesting remove_node...\n");
+  printf("removing ");
+  print_node(song3);
+  songlist = remove_node(songlist, song3);
+  printf("printing songlist after removal...\n");
+  printlist_Song(songlist);
+
+  printf("\nremoving ");
+  print_node(song4);
+  songlist = remove_node(songlist, song4);
+  printf("printing songlist after removal...\n");
+  printlist_Song(songlist);
+
+  printf("\nremoving ");
+  print_node(song5);
+  songlist = remove_node(songlist, song5);
+  printf("printing songlist after removal...\n");
+  printlist_Song(songlist);
+
+
   printf("\nFreeing Song List...\n");
-  free_list(song1);
+  free_list(songlist);
   printf("\nFinished Freeing...\n");
-  
+
   return 0;
 }
