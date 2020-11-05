@@ -93,3 +93,16 @@ struct song_node *insert_song_sorted(struct song_node *song, struct song_node *s
   }
   return song;
 }
+
+// free a list
+struct song_node *free_list(struct song_node *node) {
+  struct song_node *currentsong, *nextsong;
+  currentsong = node;
+  while (currentsong!=NULL) {
+    nextsong = currentsong->next;
+    free(currentsong);
+    currentsong = nextsong;
+  }
+  node = NULL;
+  return node;
+}
