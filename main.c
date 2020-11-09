@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "songs.h"
-//#include "symbols.h"
+#include "symbols.h"
 
 int main() {
   srand(time(NULL));
