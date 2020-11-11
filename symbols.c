@@ -44,14 +44,6 @@ void print_Letter_Symbols(struct Symbols *lib, char c) {
 void print_Symbols(struct Symbols *lib) {
   int i;
   for (i=0; i<27; i++) {
-    if ((lib->library)[i]!=NULL) {
-      printf("%c:\n", 'A'+i);
-      printlist_Song((lib->library)[i]);
-      printf("\n");
-    }
-    else {
-      if (i!=26) printf("%c:\nEmpty.\n\n", 'A'+i);
-      else printf("Other:\nEmpty.\n\n");
-    }
+    print_Letter_Symbols(lib, 'A'+i);
   }
 }
