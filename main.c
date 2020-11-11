@@ -99,6 +99,19 @@ int main() {
   printf("\nFreeing Song List...\n");
   free_list(songlist);
   printf("\nFinished Freeing...\n");
+  
+  printf("\n-----\nTESTING SYMBOLS.C / SYMBOLS.H:\n------\n\n");
+
+  struct song_node *s1 = new_Song("Song1", "A-Artist");
+  struct song_node *s2 = new_Song("Song2", "B-Artist");
+  struct song_node *s3 = new_Song("Song3", "B2-Artist");
+
+  struct Symbols *library1 = new_Symbols();
+  addSong(library1, s1);
+  addSong(library1, s2);
+  addSong(library1, s3);
+
+  print_Symbols(library1);
 
   return 0;
 }
