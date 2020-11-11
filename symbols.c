@@ -26,6 +26,20 @@ struct song_node *addSong(struct Symbols *songlib, struct song_node *newsong) {
   return (songlib->library)[x];
 }
 
+// Prints out the songs in the playlist under a specific letter.
+void print_Letter_Symbols(struct Symbols *lib, char c) {
+  int x = toupper(c)-65;
+  if ((lib->library)[x]!=NULL) {
+    printf("%c:\n", 'A'+x);
+    printlist_Song((lib->library)[x]);
+    printf("\n");
+  }
+  else {
+    if (x!=26) printf("%c:\nEmpty.\n\n", 'A'+x);
+    else printf("Other:\nEmpty.\n\n");
+  }
+}
+
 // Prints out the entire playlist alphabetically.
 void print_Symbols(struct Symbols *lib) {
   int i;
