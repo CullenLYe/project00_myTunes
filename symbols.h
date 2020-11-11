@@ -12,6 +12,8 @@ struct Symbols *new_Symbols();
 
 struct song_node *addSong(struct Symbols *songlib, struct song_node *newsong);
 
+void print_Letter_Symbols(struct Symbols *lib, char c);
+
 void print_Symbols(struct Symbols *lib);
 
 #endif
