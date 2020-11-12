@@ -10,10 +10,18 @@ struct Symbols {
 
 struct Symbols *new_Symbols();
 
-struct song_node *addSong(struct Symbols *songlib, struct song_node *newsong);
+struct Symbols *addSong(struct Symbols *songlib, struct song_node *newsong);
 
 void print_Letter_Symbols(struct Symbols *lib, char c);
 
 void print_Symbols(struct Symbols *lib);
+
+void clear_lib(struct Symbols *lib);
+
+void print_Artist_Symbols(struct Symbols *lib, char *a);
+
+struct Symbols *remove_song(struct Symbols *lib, struct song_node *song);
+
+struct Symbols *shuffle(struct Symbols *lib);
 
 #endif

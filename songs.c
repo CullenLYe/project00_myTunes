@@ -58,19 +58,11 @@ struct song_node *insert_song_sorted(struct song_node *song, struct song_node *s
   while (tracker) {
     
     if (strcmp(tracker->artist, s2->artist) == 0) {
-
-      // case 1
       if (strcmp(tracker->name, s2->name) > 0) {
         s2->next = tracker;
         before->next = s2;
         break;
       } 
-      // case 2
-      if (strcmp(tracker->next->artist, s2->artist) && strcmp(tracker->artist, s2->artist) < 0) {
-        s2->next = tracker->next;
-        tracker->next = s2;
-        break;
-      }
     }
 
     if (strcmp(tracker->artist, s2->artist) > 0) {
