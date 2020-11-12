@@ -6,181 +6,146 @@
 #include "songs.h"
 #include "symbols.h"
 
-int main() {
-  srand(time(NULL));
-  printf("Creating song1...\n");
-  struct song_node *song1 = new_Song("Happy", "Pharrell Williams");
-  printf("testing print_Song\n");
-  printlist_Song(song1);
+int main()
+{
+    srand(time(NULL));
+    printf("LINKED LIST TESTS\n");
+    printf("====================================\n");
+    printf("\nCreating song with song_node:\n");
+    struct song_node *song_list = new_Song("passion pit", "constant conversations");
+    print_node(song_list);
+    printf("====================================\n");
 
-  printf("\nCreating song2...\n");
-  struct song_node *song2 = new_Song("Can't Stop the Feeling", "Justin Timberlake");
-  printlist_Song(song2);
+    printf("\nTesting insert_front:\n");
+    song_list = insert_front(song_list, "the scientist", "coldplay");
+    printlist_Song(song_list);
+    printf("\n====================================\n");
 
-  printf("\nInserting song2 in front of song1, so the linked list is song2->song1\n");
-  insert_front(song1, song2);
-  printf("song2:\n");
-  printlist_Song(song2);
-  printf("song2->next:\n");
-  printlist_Song(song2->next);
+    printf("\nTesting insert_song_sorted:\n");
+    song_list = insert_song_sorted(song_list, "yellow", "coldplay");
+    song_list = insert_song_sorted(song_list, "centuries", "fall out boy");
+    song_list = insert_song_sorted(song_list, "fireflies", "owl city");
+    song_list = insert_song_sorted(song_list, "lemon", "kenshi yonezu");
+    song_list = insert_song_sorted(song_list, "patience", "hollow coves");
+    song_list = insert_song_sorted(song_list, "a-punk", "vampire weekend");
+    song_list = insert_song_sorted(song_list, "lisztomania", "phoenix");
+    printlist_Song(song_list);
+    printf("\n====================================\n");
 
-  printf("\ninserting more songs...\n");
-  printf("testing insert_song_sorted\n");
-  struct song_node *song3 = new_Song("A Head Full of Dreams", "Coldplay");
-  struct song_node *song4 = new_Song("Chlorine", "Twenty One Pilots");
-  struct song_node *song5 = new_Song("Shallow", "Lady Gaga, Bradley Cooper");
-  struct song_node *song6 = new_Song("Yellow", "Coldplay");
-  struct song_node *song7 = new_Song("Viva La Vida", "Coldplay");
+    printf("\nTesting find_song:\n");
+    printf("looking for [fireflies : owl city]\n");
+    printlist_Song(find_song(song_list, "fireflies", "owl city"));
+    printf("\n\nlooking for [sleepyhead: passion pit]\n");
+    printlist_Song(find_song(song_list, "sleepyhead", "passion pit"));
+    printf("\n====================================\n");
 
+    printf("\nTesting find_first_artist:\n");
+    printf("looking for [coldplay]\n");
+    printlist_Song(find_first_artist(song_list, "coldplay"));
+    printf("\n====================================\n");
 
-  printf("\nprinting song list\n");
-  struct song_node *songlist = insert_song_sorted(song2, song3);
-  printlist_Song(songlist);
+    printf("\nTesting random_element:\n");
+    print_node(random_element(song_list));
+    print_node(random_element(song_list));
+    print_node(random_element(song_list));
+    printf("====================================\n");
 
-  printf("\nprinting song list\n");
-  songlist = insert_song_sorted(songlist, song4);
-  printlist_Song(songlist);
+    printf("\nTesting remove_node:\n");
+    printf("removing [centuries: fall out boy]\n");
+    remove_node(song_list, "centuries", "fall out boy");
+    printlist_Song(song_list);
+    printf("\n====================================\n");
 
-  printf("\nprinting song list\n");
-  songlist = insert_song_sorted(songlist, song5);
-  printlist_Song(songlist);
-  
-  printf("\nprinting song list\n");
-  songlist = insert_song_sorted(songlist, song6);
-  printlist_Song(songlist);
+    printf("\nTesting free_list:\n");
+    printf("before freeing\n");
+    printlist_Song(song_list);
+    printf("\n");
+    song_list = free_list(song_list);
+    printf("after freeing\n");
+    printlist_Song(song_list);
+    printf("\n====================================\n");
 
-  printf("\nprinting song list\n");
-  songlist = insert_song_sorted(songlist, song7);
-  printlist_Song(songlist);
+    printf("\nMUSIC LIBRARY TESTS\n");
+    printf("====================================\n");
 
-  printf("\ntesting find_song...\n");
-  printf("finding Artist: Coldplay\t Song: Yellow\n");
-  printf("printing list...\n");
-  struct song_node *find = find_song(songlist, song6->artist, song6->name);
-  printlist_Song(find);
+    printf("\nCreating new playlist with new_Symbols:\n");
+    struct Symbols *playlist = new_Symbols();
+    printf("====================================\n");
 
+    printf("\nTesting addSong:\n");
+    playlist = addSong(playlist, new_Song("Centuries", "Fall Out Boy"));
+    playlist = addSong(playlist, new_Song("Immortals", "Fall Out Boy"));
+    playlist = addSong(playlist, new_Song("Chlorine", "Twenty One Pilots"));
+    playlist = addSong(playlist, new_Song("The Scientist", "Coldplay"));
+    playlist = addSong(playlist, new_Song("Yellow", "Coldplay"));
+    playlist = addSong(playlist, new_Song("Lemon", "Kenshi Yonezu"));
+    playlist = addSong(playlist, new_Song("Perfect", "Ed Sheeran"));
+    playlist = addSong(playlist, new_Song("Counting Stars", "One Republic"));
+    playlist = addSong(playlist, new_Song("Patience", "Hollow Coves"));
+    playlist = addSong(playlist, new_Song("Fireflies", "Owl City"));
+    playlist = addSong(playlist, new_Song("Constant Conversations", "Passion pit"));
+    playlist = addSong(playlist, new_Song("A-punk", "Vampire Weekend"));
+    playlist = addSong(playlist, new_Song("Lisztomania", "The Phoenix"));
+    playlist = addSong(playlist, new_Song("Something Good Can Work", "Two Door Cinema Club"));
+    print_Symbols(playlist);
+    printf("====================================\n");
 
-  printf("\ntesting find_first_song...\n");
-  printf("finding Artist: Coldplay\n");
-  printf("printing list...\n");
-  find = find_first_artist(songlist, song6->artist);
-  printlist_Song(find);
+    printf("\nTesting search:\n");
+    printf("looking for [A-punk, Vampire Weekend]\n");
+    printlist_Song(search(playlist, "A-punk", "Vampire Weekend"));
+    printf("\n");
+    printf("looking for [New Light, John Mayer]\n");
+    printlist_Song(search(playlist, "New Light", "John Mayer"));
+    printf("\n====================================\n");
 
+    printf("\nTesting search_artist:\n");
+    printf("looking for [Hollow Coves]\n");
+    printlist_Song(search_artist(playlist, "Hollow Coves"));
+    printf("\n");
+    printf("looking for [Hannah Montana]\n");
+    printlist_Song(search_artist(playlist, "Hannah Montana"));
+    printf("\n====================================\n");
 
-  printf("\ntesting random_element...\n");
-  int i;
-  struct song_node *s;
-  for (i = 0; i < 4; i++) {
-    s = random_element(songlist); 
-    print_node(s);
-  }
+    printf("\nTesting print_Letter_Symbols:\n");
+    print_Letter_Symbols(playlist, 'T');
+    print_Letter_Symbols(playlist, 'K');
+    printf("====================================\n");
 
+    printf("\nTesting print_Artist_Symbols:\n");
+    print_Artist_Symbols(playlist, "Fall Out Boy");
+    print_Artist_Symbols(playlist, "Two Door Cinema Club");
+    printf("====================================\n");
 
-  printf("\ntesting remove_node...\n");
-  printf("removing ");
-  print_node(song3);
-  songlist = remove_node(songlist, song3);
-  printf("printing songlist after removal...\n");
-  printlist_Song(songlist);
+    printf("\nTesting remove song:\n");
+    printf("removing [A-punk, Vampire Weekend]\n");
+    playlist = remove_song(playlist, "A-punk", "Vampire Weekend");
+    print_Symbols(playlist);
+    printf("\n====================================\n");
 
-  printf("\nremoving ");
-  print_node(song4);
-  songlist = remove_node(songlist, song4);
-  printf("printing songlist after removal...\n");
-  printlist_Song(songlist);
+    printf("\nTesting clear_library:\n");
+    printf("before clearing:\n");
+    print_Symbols(playlist);
+    clear_lib(playlist);
+    printf("\nafter clearing:\n");
+    print_Symbols(playlist);    
+    printf("====================================\n");
 
-  printf("\nremoving ");
-  print_node(song5);
-  songlist = remove_node(songlist, song5);
-  printf("printing songlist after removal...\n");
-  printlist_Song(songlist);
+    playlist = addSong(playlist, new_Song("Centuries", "Fall Out Boy"));
+    playlist = addSong(playlist, new_Song("Immortals", "Fall Out Boy"));
+    playlist = addSong(playlist, new_Song("Chlorine", "Twenty One Pilots"));
+    playlist = addSong(playlist, new_Song("The Scientist", "Coldplay"));
+    playlist = addSong(playlist, new_Song("Yellow", "Coldplay"));
+    playlist = addSong(playlist, new_Song("Lemon", "Kenshi Yonezu"));
+    playlist = addSong(playlist, new_Song("Perfect", "Ed Sheeran"));
+    playlist = addSong(playlist, new_Song("Counting Stars", "One Republic"));
+    playlist = addSong(playlist, new_Song("Patience", "Hollow Coves"));
+    playlist = addSong(playlist, new_Song("Fireflies", "Owl City"));
+    playlist = addSong(playlist, new_Song("Constant Conversations", "Passion pit"));
+    playlist = addSong(playlist, new_Song("A-punk", "Vampire Weekend"));
+    playlist = addSong(playlist, new_Song("Lisztomania", "The Phoenix"));
+    playlist = addSong(playlist, new_Song("Something Good Can Work", "Two Door Cinema Club"));
 
-
-  printf("\nFreeing Song List...\n");
-  free_list(songlist);
-  printf("\nFinished Freeing...\n");
-  
-  printf("\n-----\nTESTING SYMBOLS.C / SYMBOLS.H:\n------\n\n");
-  printf("testing print_Symbols\n");
-
-  struct song_node *s1 = new_Song("Centuries", "Fall Out Boy");
-  struct song_node *s2 = new_Song("Immortals", "Fall Out Boy");
-  struct song_node *s3 = new_Song("Chlorine", "Twenty One Pilots");
-  struct song_node *s4 = new_Song("Yellow", "Coldplay");
-  struct song_node *s5 = new_Song("Lemon", "Kenshi Yonezu");
-  struct song_node *s6 = new_Song("Perfect", "Ed Sheeran");
-  struct song_node *s7 = new_Song("Counting Stars", "One Republic");
-  struct song_node *s8 = new_Song("Patience", "Hollow Coves");
-  struct song_node *s9 = new_Song("Fireflies", "Owl City");
-
-
-  struct Symbols *library1 = new_Symbols();
-  library1 = addSong(library1, s1);
-  library1 = addSong(library1, s2);
-  library1 = addSong(library1, s3);
-  library1 = addSong(library1, s4);
-  library1 = addSong(library1, s5);
-  library1 = addSong(library1, s6);
-  library1 = addSong(library1, s7);
-  library1 = addSong(library1, s8);
-  library1 = addSong(library1, s9);
-
-  // testing print_Symbols
-  print_Symbols(library1);
-
-  printf("\n");
-
-  // testing remove_song
-  printf("removing Artist: Twenty One Pilots   Song: Chlorine\n");
-  library1 = remove_song(library1, s3);
-  
-  printf("testing after removal: \n\n");
-  print_Symbols(library1);
-
-  printf("\n");
-
-  printf("testing print_Artist_Symbols \n");
-  print_Artist_Symbols(library1, s2->artist);
-
-  printf("testing clear_lib \n\n");
-  printf("library before clear_lib: \n");
-  print_Symbols(library1);
-
-  clear_lib(library1);
-
-  printf("library after clear_lib: \n");
-  print_Symbols(library1);
-
-  printf("\n");
-
-  printf("Adding songs to empty library \n");
-  struct Symbols *library2 = new_Symbols();
-  struct song_node *s11 = new_Song("Chlorine", "Twenty One Pilots");
-  struct song_node *s12 = new_Song("The Scientist", "Coldplay");
-  struct song_node *s13 = new_Song("Lemon", "Kenshi Yonezu");
-  struct song_node *s14 = new_Song("Perfect", "Ed Sheeran");
-  struct song_node *s15 = new_Song("Apologize", "One Republic");
-  struct song_node *s16 = new_Song("Counting Stars", "One Republic");
-  struct song_node *s17 = new_Song("Love Runs Out", "One Republic");
-  struct song_node *s18 = new_Song("Stop And Stare", "One Republic");
-  library2 = addSong(library2, s11);
-  library2 = addSong(library2, s12);
-  library2 = addSong(library2, s13);
-  library2 = addSong(library2, s14);
-  library2 = addSong(library2, s15);
-  library2 = addSong(library2, s16);
-  library2 = addSong(library2, s17);
-  library2 = addSong(library2, s18);
-
-  printf("\n");
-
-  printf("testing print_Letter_Symbols \n");
-  print_Letter_Symbols(library2, 'O');
-  
-  printf("\n");
-
-  printf("testing shuffle\n");
-  shuffle(library1);
-
-  return 0;
+    printf("\nTesting shuffle\n");
+    shuffle(playlist);
+    printf("====================================\n");
 }
